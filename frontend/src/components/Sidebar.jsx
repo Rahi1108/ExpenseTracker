@@ -24,6 +24,11 @@ const navigation = [
     icon: Receipt,
   },
   {
+    name: 'Chatbot', 
+    href: '/chatbot',
+    icon: MessageSquare,
+  },
+  {
     name: 'Set Reminder',
     href: '/set-reminder',
     icon: AlarmClock,
