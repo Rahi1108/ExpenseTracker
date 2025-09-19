@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { 
-  LayoutDashboard, 
-  Receipt, 
+import { useState, useEffect } from 'react';
+import {
+  LayoutDashboard,
+  Receipt,
   Settings,
   TrendingUp,
   X,
   Bell,
-  Bell as BellIcon,
-  AlarmClock
+  AlarmClock,
+  MessageSquare // Icon for Chatbot
 } from 'lucide-react';
 
 const navigation = [
@@ -22,6 +22,11 @@ const navigation = [
     name: 'Transactions',
     href: '/transactions',
     icon: Receipt,
+  },
+  {
+    name: 'Chatbot', // <-- New link added here
+    href: '/chatbot',
+    icon: MessageSquare,
   },
   {
     name: 'Set Reminder',
@@ -40,7 +45,6 @@ const navigation = [
   },
 ];
 
-import { useEffect } from 'react';
 export default function Sidebar({ open, onToggle, isMobile, mode = 'overlay', navbarHeight = 64, onSidebarWidthChange }) {
   // mode: 'overlay' or 'below-navbar'.
   // navbarHeight: px value for below-navbar mode.
@@ -55,9 +59,6 @@ export default function Sidebar({ open, onToggle, isMobile, mode = 'overlay', na
     }
   }, [expanded, onSidebarWidthChange]);
 
-  // Layout mode switch (see comments below)
-  // --- Overlay mode (sidebar overlays navbar, fixed at top:0) ---
-  // --- Below-navbar mode (sidebar starts below navbar, fixed at top:navbarHeight) ---
   const fixedStyles = mode === 'overlay'
     ? {
         position: 'fixed',
@@ -126,8 +127,6 @@ export default function Sidebar({ open, onToggle, isMobile, mode = 'overlay', na
               </motion.div>
             )}
           </AnimatePresence>
-          {/* Pin/Unpin toggle for desktop */}
-          {/* Pin/unpin button removed to eliminate extra icon in header */}
           {isMobile && (
             <button
               onClick={onToggle}
